@@ -1,0 +1,26 @@
+all: myapp
+myapp: driver.o prog1.o prog2.o prog3.o prog4.o
+	gcc driver.o prog1.o prog2.o prog3.o prog4.o -o myapp
+
+driver.o: driver.c
+	gcc -c driver.c
+prog1.o: prog1.c
+	gcc -c prog1.c
+prog2.o: prog2.c
+	gcc -c prog2.c
+prog3.o: prog3.c
+	 gcc -c prog3.c
+prog4.o: prog4.c
+	gcc -c prog4.c
+
+clean:
+	rm -f *.o
+
+install: myapp
+	@cp myapp /usr/bin
+	@chmod a+x /usr/bin/myapp
+	@chmod og-w /usr/bin/myapp
+	@echo "myapp installed successfully in /usr/bin"
+uninstall:
+	@rm -f /usr/bin/myapp
+	@echo "myapp successfully un-installed from /usr/bin
